@@ -10,6 +10,10 @@ function handleWeatherData(data) {
   weatherData.value = data;
 }
 
+function handleDataFetched(data) {
+  this.fetchedData = data;
+}
+
 </script>
 
 <template>
@@ -20,8 +24,8 @@ function handleWeatherData(data) {
   </header>
   <div class="container">
   <div class="panel">
-    <Search @weather-data="handleWeatherData"/>
-    <WeatherPanel v-bind="weatherData" />
+    <Search @weather-data="handleWeatherData" @data-fetched="handleDataFetched"/>
+    <WeatherPanel v-bind="weatherData" :fetched-data="fetchedData"/>
   </div>
     <CatBox/>
   </div>

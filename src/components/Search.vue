@@ -13,13 +13,18 @@ watch(selectedCity, async (city) => {
     emit('weather-data', weatherData);
   }
 });
+
+function fetchData() {
+    this.$emit('data-fetched', "It's cloudy");
+}
+
 </script>
 
 <template>
 <div class="search-container">
 <form id="searchBar" class="search-bar" autocomplete="off">
       <input id="input" v-model="input" type="text" placeholder="Search for your city/state or zip code">
-      <button id="searchButton" class="search-button" type="submit"></button>
+      <button id="searchButton" class="search-button" type="submit" @click="fetchData"></button>
 </form>
 <Autocomplete @city-selected="selectedCity = $event"/>
 </div>

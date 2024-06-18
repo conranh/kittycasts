@@ -1,5 +1,6 @@
 <script setup>
 import { toRefs } from 'vue';
+import Search from './Search.vue';
 
 const props = defineProps({
     city: String,
@@ -12,7 +13,12 @@ const props = defineProps({
     humidity: Number,
     forecast: Object,
     high: Number,
-    low: Number
+    low: Number,
+
+    fetchedData: {
+        type: Object,
+        required: true
+    }
 });
 
 const { 
@@ -26,10 +32,12 @@ const {
     humidity, 
     forecast, 
     high, 
-    low } = toRefs(props);
+    low,
+    } = toRefs(props);
 </script>
 
 <template>
+    {{ fetchedData }}
 <div class="current-container">
     <div class="location">
         {{ city && state ? city + ', ' + state : city || state }}
@@ -46,7 +54,9 @@ const {
             <div>{{ high ? 'High: ' + high + '°': high }}</div>
         </div>
     </div>
-    <div class="condition">{{ condition }}</div>
+    <img class="icon">
+    <div class="condition">{{ condition }}
+    </div>
 </div>
 
 <div class="air-container">
